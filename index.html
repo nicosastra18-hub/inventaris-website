@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a3d">
+  <meta name="description" content="RuangStock — PWA Sistem Inventaris RPL SMK Krian 1 Sidoarjo">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+  <title>RuangStock — RPL SMK Krian 1</title>
+</head>
+
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <section id="splashScreen" class="splash-screen">
+    <div class="splash-backdrop"></div>
+    <div class="splash-logo"><span>RPL</span></div>
+    <p class="eyebrow">SMK KRIAN 1 SIDOARJO</p>
+    <h1>Ruang<span>Stock</span></h1>
+    <p class="splash-copy">Inventaris digital karya siswa RPL</p>
+    <div class="loader"><span></span></div>
+    <div class="loading-status"><span class="status-dot"></span><span id="loadingText">Menyiapkan ruang
+        kerja...</span><b id="loadingPercent">0%</b></div><small>Rekayasa Perangkat Lunak · 2026</small>
+  </section>
+
+  <section id="loginScreen" class="login-screen" aria-label="Login pengguna">
+    <div class="login-panel">
+      <div class="login-brand">
+        <div class="brand-mark">RPL</div>
+        <div><strong>Ruang<span>Stock</span></strong><small>INVENTORY SYSTEM</small></div><span class="secure-pill"><i
+            class="fa-solid fa-lock"></i> Secure access</span>
+      </div>
+      <div class="login-loading">
+        <div><span class="status-dot"></span> Sistem siap digunakan</div><b>RPL · 2026</b>
+      </div>
+      <div class="login-copy">
+        <p class="eyebrow">PORTAL INVENTARIS RPL</p>
+        <h1>Selamat datang<br><em>di ruang kerja.</em></h1>
+        <p>Kelola inventaris sekolah dengan alur kerja yang lebih cepat, rapi, dan terukur.</p>
+      </div>
+      <div class="login-highlights"><span><i class="fa-solid fa-cloud-arrow-down"></i> LocalStorage</span><span><i
+            class="fa-solid fa-bolt"></i> PWA ready</span><span><i class="fa-solid fa-shield-halved"></i> Private</span>
+      </div>
+      <form id="loginForm" class="login-form"><label for="loginUser">Pilih pengguna<select id="loginUser" required>
+            <option value="">Pilih akun</option>
+            <option value="sastra">Rahmatullah Sastra Ardiansyah</option>
+            <option value="ikhsan">Rahmad Ikhsan Maulana</option>
+          </select></label><label for="loginPassword">Password<div class="password-wrap"><input id="loginPassword"
+              type="password" placeholder="Masukkan password" required><button type="button" id="togglePassword"
+              aria-label="Tampilkan password"><i class="fa-solid fa-eye"></i></button></div></label><button
+          class="login-button" type="submit">Masuk ke dashboard <i class="fa-solid fa-arrow-right"></i></button>
+        <p id="loginError" class="login-error"></p>
+      </form>
+      <div class="login-footer"><span><i class="fa-solid fa-shield-halved"></i> Akses terbatas untuk tim
+          RPL</span><span>v1.0 · 2026</span></div>
+    </div>
+    <div class="login-art">
+      <div class="art-grid"></div>
+      <div class="art-glow"></div>
+      <div class="art-label label-top"><i class="fa-solid fa-circle-check"></i> SYSTEM ONLINE</div>
+      <div class="code-card"><span>&lt;RPL /&gt;</span><b>Build. Manage.<br>Improve.</b><small>SMK KRIAN 1 ·
+          SIDOARJO</small></div>
+      <div class="art-label label-bottom"><i class="fa-solid fa-boxes-stacked"></i> INVENTORY HUB</div>
+      <div class="art-orbit"></div>
+    </div>
+  </section>
+
+  <div id="app" class="app-shell is-hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">RPL</div>
+        <div><strong>Ruang<span>Stock</span></strong><small>INVENTORY SYSTEM</small></div>
+      </div>
+      <div class="school-tag"><i class="fa-solid fa-graduation-cap"></i><span>SMK KRIAN 1<br><b>SIDOARJO</b></span>
+      </div>
+      <nav class="nav-list" aria-label="Navigasi utama">
+        <p class="nav-title">MENU UTAMA</p><a class="nav-item active" href="#dashboard"><span class="nav-icon"><i
+              class="fa-solid fa-grid-2"></i></span> Dashboard</a><a class="nav-item" href="#inventory"><span
+            class="nav-icon"><i class="fa-solid fa-boxes-stacked"></i></span> Inventaris</a><a class="nav-item"
+          href="#insights"><span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span> Insight</a>
+        <p class="nav-title nav-title-space">PREFERENSI</p><button class="nav-item nav-button" id="themeToggle"><span
+            class="nav-icon"><i class="fa-solid fa-moon"></i></span> Mode gelap</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-icon"><i class="fa-solid fa-lightbulb"></i></span><strong>RPL
+            berkarya.</strong>
+          <p>Data rapi, sekolah lebih siap.</p>
+        </div>
+        <p class="version">BY RPL · 2026</p>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SELAMAT DATANG KEMBALI</p>
+          <h2>Halo, <span id="activeUser">Pengelola</span>.</h2>
+        </div>
+        <div class="top-actions"><button id="installBtn" class="install-button hidden"><i
+              class="fa-solid fa-download"></i> Install App</button><button id="profileButton" class="profile-button"><i
+              class="fa-solid fa-user-pen"></i> Profil</button><button id="logoutBtn" class="logout-button"><i
+              class="fa-solid fa-right-from-bracket"></i> Keluar</button><button id="userAvatar" class="avatar"
+            title="Buka profil">R</button></div>
+      </header>
+      <section class="hero-card" id="dashboard">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> SISTEM AKTIF · RPL SMK KRIAN 1</div>
+          <h1>Semua barang,<br><em>satu kendali.</em></h1>
+          <p>Monitor kondisi dan jumlah inventaris ruangan sekolah<br class="desktop-only"> secara cepat, mudah, dan
+            terorganisir.</p><a href="#inventory" class="primary-button">Kelola Inventaris <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-art">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="cube"><i class="fa-solid fa-cubes"></i></div>
+          <div class="floating-tag tag-a"><i class="fa-solid fa-circle-check"></i> TERDATA</div>
+          <div class="floating-tag tag-b">100%</div>
+        </div>
+      </section>
+      <section class="section-heading">
+        <div>
+          <p class="eyebrow">OVERVIEW</p>
+          <h3>Ringkasan data</h3>
+        </div><span id="lastUpdated" class="muted">Belum ada data</span>
+      </section>
+      <section class="stats-grid">
+        <article class="stat-card stat-total">
+          <div class="stat-top"><span class="stat-label">TOTAL BARANG</span><span class="stat-icon"><i
+                class="fa-solid fa-boxes-stacked"></i></span></div><strong id="totalCount">0</strong>
+          <p>Unit terdata</p>
+          <div class="sparkline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="stat-card stat-good">
+          <div class="stat-top"><span class="stat-label">KONDISI BAIK</span><span class="stat-icon"><i
+                class="fa-solid fa-check"></i></span></div><strong id="goodCount">0</strong>
+          <p><b id="goodPercent">0%</b> dari total barang</p>
+          <div class="progress"><span id="goodProgress"></span></div>
+        </article>
+        <article class="stat-card stat-bad">
+          <div class="stat-top"><span class="stat-label">PERLU PERHATIAN</span><span class="stat-icon"><i
+                class="fa-solid fa-triangle-exclamation"></i></span></div><strong id="badCount">0</strong>
+          <p>Rusak ringan & berat</p>
+          <div class="progress danger"><span id="badProgress"></span></div>
+        </article>
+      </section>
+      <section id="inventory" class="inventory-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DATABASE RUANGAN</p>
+            <h3>Daftar inventaris</h3>
+          </div><button id="addButton" class="primary-button"><i class="fa-solid fa-plus"></i> Tambah barang</button>
+        </div>
+        <div class="toolbar"><label class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input
+              id="searchInput" type="search" placeholder="Cari nama atau kode barang..."
+              aria-label="Cari inventaris"></label><select id="roomFilter" aria-label="Filter ruangan">
+            <option value="">Semua ruangan</option>
+          </select><select id="conditionFilter" aria-label="Filter kondisi">
+            <option value="">Semua kondisi</option>
+            <option value="Baik">Baik</option>
+            <option value="Rusak Ringan">Rusak Ringan</option>
+            <option value="Rusak Berat">Rusak Berat</option>
+          </select><button id="exportBtn" class="secondary-button"><i class="fa-solid fa-file-export"></i>
+            Export</button></div>
+        <div id="inventoryList" class="inventory-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon"><i class="fa-solid fa-box-open"></i></div>
+          <h4>Belum ada inventaris</h4>
+          <p>Tambahkan barang pertama untuk mulai mengelola ruanganmu.</p><button class="primary-button"
+            id="emptyAddButton"><i class="fa-solid fa-plus"></i> Tambah barang</button>
+        </div>
+      </section>
+      <section id="insights" class="insight-banner">
+        <div>
+          <p class="eyebrow">INSIGHT</p>
+          <h3>Data yang rapi, keputusan yang pasti.</h3>
+          <p>Gunakan ringkasan kondisi untuk mengetahui barang mana yang perlu segera ditangani.</p>
+        </div>
+        <div class="insight-number"><strong id="roomCount">0</strong><span>ruangan terdata</span></div>
+      </section>
+      <footer class="site-footer">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="brand-mark">RPL</div>
+            <div><strong>Ruang<span>Stock</span></strong>
+              <p>Progressive Web App inventaris<br>karya siswa RPL.</p>
+            </div>
+          </div>
+          <div class="footer-school"><strong>SMK KRIAN 1 SIDOARJO</strong><span>Rekayasa Perangkat
+              Lunak</span><small>Belajar · Berkarya · Berdampak</small></div>
+          <div class="footer-team"><strong>DEVELOPMENT TEAM</strong><span><i class="fa-solid fa-code"></i> Rahmatullah
+              Sastra Ardiansyah</span><span><i class="fa-solid fa-code"></i> Rahmad Ikhsan Maulana</span></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 RuangStock · Made with care by RPL</span>
+          <div class="social-links"><a href="https://github.com/nicosastra18-hub?tab=repositories" target="_blank" rel="noreferrer"
+              title="GitHub Sastra"><i class="fa-brands fa-github"></i> Sastra</a><a href="https://github.com/ikhsan"
+              target="_blank" rel="noreferrer" title="GitHub Ikhsan"><i class="fa-brands fa-github"></i> Ikhsan</a><a
+              href="https://www.instagram.com/rsa.vixx?stkn=MXg0NWEyMTAzNHRhag==" target="_blank" rel="noreferrer"><i
+                class="fa-brands fa-instagram"></i> Instagram</a><a href="https://www.tiktok.com/@rsa.vix?_r=1&_t=ZS-99Z6LHIimA8"
+              target="_blank" rel="noreferrer"><i class="fa-brands fa-tiktok"></i> TikTok</a><a href="https://wa.me/6285847439679"
+              title="WhatsApp — tambahkan nomor kontak"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></div>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <dialog id="itemDialog">
+    <form id="itemForm" method="dialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">DATA INVENTARIS</p>
+          <h3 id="modalTitle">Tambah barang</h3>
+        </div><button type="button" id="closeDialog" class="close-button">×</button>
+      </div><input type="hidden" id="itemId"><label>Nama Barang<input id="itemName" required
+          placeholder="Contoh: Komputer Desktop"></label><label>Kode Inventaris<input id="itemCode" required
+          placeholder="Contoh: INV-001"></label><label>Nama Ruangan<select id="itemRoom" required>
+          <option value="">Pilih ruangan</option>
+        </select></label>
+      <div class="form-row"><label>Jumlah Barang<input id="itemQuantity" required type="number" min="1"
+            value="1"></label><label>Kondisi<select id="itemCondition" required>
+            <option>Baik</option>
+            <option>Rusak Ringan</option>
+            <option>Rusak Berat</option>
+          </select></label></div>
+      <div class="modal-actions"><button type="button" id="cancelDialog" class="secondary-button">Batal</button><button
+          class="primary-button" type="submit">Simpan data <i class="fa-solid fa-arrow-right"></i></button></div>
+    </form>
+  </dialog>
+  <dialog id="profileDialog">
+    <form id="profileForm" method="dialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">PENGATURAN AKUN</p>
+          <h3>Profil saya</h3>
+        </div><button type="button" id="closeProfile" class="close-button">×</button>
+      </div>
+      <div class="profile-photo-wrap"><img id="profilePreview" alt="Foto profil"><label class="photo-upload"><i
+            class="fa-solid fa-camera"></i> Ganti foto<input id="profilePhoto" type="file"
+            accept="image/png,image/jpeg,.jpg,.jpeg,.png"></label><small>Format JPG, JPEG, atau PNG</small></div>
+      <label>Nama pengguna<input id="profileName" required minlength="3"
+          placeholder="Nama pengguna"></label><label>Password baru<input id="profilePassword" type="password"
+          minlength="6" placeholder="Kosongkan jika tidak ingin mengganti"></label>
+      <p id="profileLimit" class="profile-limit"></p>
+      <p id="profileError" class="login-error"></p>
+      <div class="modal-actions"><button type="button" id="cancelProfile" class="secondary-button">Batal</button><button
+          class="primary-button" type="submit">Simpan profil <i class="fa-solid fa-check"></i></button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js?v=3"></script>
+</body>
+
+</html>
